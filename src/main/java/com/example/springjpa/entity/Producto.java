@@ -34,9 +34,14 @@ public class Producto implements Serializable{
 	private String nombre;
 	private double precio;
 	private int stock;
+	
+	
 	@ManyToOne
 	@JoinColumn(name="idcategoria", nullable = false)
 	private Categoria categoria;
+	
+	
+	
 	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name="iddetalle_venta")
 	private Set<DetalleVenta> detalles;

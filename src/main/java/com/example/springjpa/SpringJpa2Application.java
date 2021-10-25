@@ -10,6 +10,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.example.springjpa.entity.Categoria;
 import com.example.springjpa.entity.Cliente;
+import com.example.springjpa.entity.Departamento;
 import com.example.springjpa.entity.DetalleVenta;
 import com.example.springjpa.entity.Empleado;
 import com.example.springjpa.entity.Producto;
@@ -18,6 +19,7 @@ import com.example.springjpa.entity.Usuario;
 import com.example.springjpa.entity.Venta;
 import com.example.springjpa.repository.CategoriaRepository;
 import com.example.springjpa.repository.ClienteRepository;
+import com.example.springjpa.repository.DepartmentRepository;
 import com.example.springjpa.repository.DetalleVentaRepositoy;
 import com.example.springjpa.repository.EmpleadoRepository;
 import com.example.springjpa.repository.ProductoRepository;
@@ -50,6 +52,9 @@ public class SpringJpa2Application implements CommandLineRunner{
 	
 	@Autowired
 	private DetalleVentaRepositoy detalleRepository;
+	
+	@Autowired
+	private DepartmentRepository departmentRepository;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(SpringJpa2Application.class, args);
@@ -93,8 +98,8 @@ public class SpringJpa2Application implements CommandLineRunner{
 		venta.setUsuario(u1);
 		//Categoria
 		Categoria cat = new Categoria();
-		cat.setNomcat("Lacteos");
-		//categoriaRepository.save(cat);
+		cat.setNomcat("Detergentes");
+		categoriaRepository.save(cat);
 		//ventaRepository.save(venta);
 		Categoria cat1 = categoriaRepository.findById(1).get();
 		Producto prod = new Producto();
@@ -111,7 +116,15 @@ public class SpringJpa2Application implements CommandLineRunner{
 		dv.setVenta(v1);
 		dv.setProducto(p1);
 		//detalleRepository.save(dv);
+		//departmentRepository.saveDepartment("Prueba2", 1, 2, "1");
+		//departmentRepository.saveDepartment("Finanzas", 3, 1, "1");
+		List<Departamento> dptos = departmentRepository.listaDepartamentos();
+		for(int i=0;i<dptos.size(); i++) {
+			System.out.println(dptos.get(i).getDepartment_name());
+		}
 		
+	Departamento dpto = departmentRepository.readId(4).get();
+	System.out.println("Departamento: "+dpto.getDepartment_name());
 		
 		
 	}
