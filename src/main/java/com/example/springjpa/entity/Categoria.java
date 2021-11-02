@@ -1,17 +1,16 @@
 package com.example.springjpa.entity;
 
-import java.io.Serializable;
-import java.util.Set;
+import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -21,19 +20,15 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Entity
 @Table(name="categoria")
-public class Categoria implements Serializable{
-	private static final long serialVersionUID = -1942395296462336245L;
+public class Categoria{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "idcategoria")
 	private int id;
 	@Column(name= "nom_cat")
-	private String nomcat;
+	private String nomcat;		
 	
-	
-	
-	@OneToMany(cascade = CascadeType.ALL)
-	@JoinColumn(name="idproducto")
-	private Set<Producto> productos;
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "categoria")
+	private List<Producto> productos;
 	
 }

@@ -63,7 +63,7 @@ public class SpringJpa2Application implements CommandLineRunner{
 	@SuppressWarnings("deprecation")
 	@Override
 	public void run(String... args) throws Exception {
-		
+		/*
 		//Registrar empleado
 		Empleado emp = new Empleado();
 		emp.setNombres("Jonas");
@@ -99,15 +99,15 @@ public class SpringJpa2Application implements CommandLineRunner{
 		//Categoria
 		Categoria cat = new Categoria();
 		cat.setNomcat("Detergentes");
-		categoriaRepository.save(cat);
+		//categoriaRepository.save(cat);
 		//ventaRepository.save(venta);
-		Categoria cat1 = categoriaRepository.findById(1).get();
+		Categoria cat1 = categoriaRepository.findById(55).get();
 		Producto prod = new Producto();
-		prod.setNombre("Leche Gloria");
-		prod.setPrecio(3.5);
-		prod.setStock(20);
+		prod.setNombre("Ariel 350gr");
+		prod.setPrecio(8.5);
+		prod.setStock(10);
 		prod.setCategoria(cat1);
-		//productoRepository.save(prod);
+		productoRepository.save(prod);
 		Venta v1 = ventaRepository.findById(2).get();
 		Producto p1 = productoRepository.findById(1).get();
 		DetalleVenta dv = new DetalleVenta();
@@ -116,16 +116,18 @@ public class SpringJpa2Application implements CommandLineRunner{
 		dv.setVenta(v1);
 		dv.setProducto(p1);
 		//detalleRepository.save(dv);
-		//departmentRepository.saveDepartment("Prueba2", 1, 2, "1");
+		//departmentRepository.saveDepartment("Facultad de Salud",300, 110, "1");
 		//departmentRepository.saveDepartment("Finanzas", 3, 1, "1");
+	/*	
 		List<Departamento> dptos = departmentRepository.listaDepartamentos();
 		for(int i=0;i<dptos.size(); i++) {
 			System.out.println(dptos.get(i).getDepartment_name());
 		}
-		
-	Departamento dpto = departmentRepository.readId(4).get();
+		/*
+	Departamento dpto = departmentRepository.readId(7).get();
 	System.out.println("Departamento: "+dpto.getDepartment_name());
-		
+	
+	System.out.println(departmentRepository.depatmentDel(8));	*/
 		
 	}
 

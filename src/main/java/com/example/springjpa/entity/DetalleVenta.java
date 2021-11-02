@@ -4,12 +4,15 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -31,11 +34,16 @@ public class DetalleVenta implements Serializable {
 	private double precio;
 	@Column(name = "cantidad_venta")
 	private int cantidad;
-	@ManyToOne
-	@JoinColumn(name="idproducto", nullable = false)
-	private Producto producto;
-	@ManyToOne
-	@JoinColumn(name="idventa", nullable = false)
-	private Venta venta;
 
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JsonIgnore
+	@JoinColumn(name="idproducto", referencedColumnName="idproducto")
+	private Producto producto;
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JsonIgnore
+	@JoinColumn(name="idventa", referencedColumnName="idventa")
+	private Venta venta;
+	
 }
